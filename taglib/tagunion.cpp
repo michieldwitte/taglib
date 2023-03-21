@@ -179,6 +179,11 @@ String TagUnion::album() const
   stringUnion(album);
 }
 
+String TagUnion::albumArtist() const
+{
+  stringUnion(albumArtist);
+}
+
 String TagUnion::comment() const
 {
   stringUnion(comment);
@@ -212,6 +217,11 @@ void TagUnion::setArtist(const String &s)
 void TagUnion::setAlbum(const String &s)
 {
   setUnion(Album, s);
+}
+
+void TagUnion::setAlbumArtist(const String &s)
+{
+  setUnion(AlbumArtist, s);
 }
 
 void TagUnion::setComment(const String &s)

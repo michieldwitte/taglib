@@ -774,6 +774,14 @@ MP4::Tag::album() const
 }
 
 String
+MP4::Tag::albumArtist() const
+{
+  if(d->items.contains("aART"))
+    return d->items["aART"].toStringList().toString(", ");
+  return String();
+}
+
+String
 MP4::Tag::comment() const
 {
   if(d->items.contains("\251cmt"))
@@ -821,6 +829,12 @@ void
 MP4::Tag::setAlbum(const String &value)
 {
   setTextItem("\251alb", value);
+}
+
+void
+MP4::Tag::setAlbumArtist(const String &value)
+{
+  d->items["aART"] = StringList(value);
 }
 
 void

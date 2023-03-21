@@ -94,6 +94,17 @@ String Ogg::XiphComment::album() const
   return value.isEmpty() ? String() : value.toString();
 }
 
+String Ogg::XiphComment::albumArtist() const
+{
+  if(!d->fieldListMap["ALBUMARTIST"].isEmpty())
+    return d->fieldListMap["ALBUMARTIST"].toString();
+  if(!d->fieldListMap["ALBUM ARTIST"].isEmpty())
+    return d->fieldListMap["ALBUM ARTIST"].toString();
+  if(!d->fieldListMap["ALBUM_ARTIST"].isEmpty())
+    return d->fieldListMap["ALBUM_ARTIST"].toString();
+  return String();
+}
+
 String Ogg::XiphComment::comment() const
 {
   StringList value = d->fieldListMap.value("DESCRIPTION");
@@ -152,6 +163,11 @@ void Ogg::XiphComment::setArtist(const String &s)
 void Ogg::XiphComment::setAlbum(const String &s)
 {
   addField("ALBUM", s);
+}
+
+void Ogg::XiphComment::setAlbumArtist(const String &s)
+{
+  addField("ALBUMARTIST", s);
 }
 
 void Ogg::XiphComment::setComment(const String &s)

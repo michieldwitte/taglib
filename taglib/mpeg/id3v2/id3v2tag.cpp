@@ -161,6 +161,13 @@ String ID3v2::Tag::album() const
   return String();
 }
 
+String ID3v2::Tag::albumArtist() const
+{
+  if(!d->frameListMap["TPE2"].isEmpty())
+    return d->frameListMap["TPE2"].front()->toString();
+  return String();
+}
+
 String ID3v2::Tag::comment() const
 {
   const FrameList &comments = d->frameListMap["COMM"];
@@ -248,6 +255,11 @@ void ID3v2::Tag::setArtist(const String &s)
 void ID3v2::Tag::setAlbum(const String &s)
 {
   setTextFrame("TALB", s);
+}
+
+void ID3v2::Tag::setAlbumArtist(const String &s)
+{
+  setTextFrame("TPE2", s);
 }
 
 void ID3v2::Tag::setComment(const String &s)
